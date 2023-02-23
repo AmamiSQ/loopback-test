@@ -1,49 +1,40 @@
-import React, {useEffect} from 'react';
+import React, {useRef} from 'react';
 import { useState } from 'react';
 
 export default function DeleteUser() {
-  interface User {
-    id: number;
-    firstName: string;
-    lastName: string;
-}
-  const [users, setUsers] = (useState<User[]>([]));
-  const [search, setSearch] = useState<string>("");
+  const [remove, setRemove] = useState<string>("");
+  const deleteForm = useRef(null);
 
-  useEffect(() => {
-    const getUsers = async () => {
-      const data = await (
-        await fetch("http://localhost:3000/users")
-      ).json();
-      setUsers(data);
-    };
-    getUsers();
-  }, []);
-
-  const findUser = (id:number) => {
-    //if user is found, display user info
-    if(users.find(user => user.id === id)){
-      const result = (users.find(user => user.id === id));
-      setSearch(result!.firstName + " " + result!.lastName);
-    }
-    else{
-      setSearch("User not found");
-    }
+  const removeUser = async () => {
+    const id = (deleteForm.current as any).userID.value;
+    //removes a user from the database
+    const response = await fetch("http://localhost:3000/users/" + id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(id),
+    });
+    const data = await response.json();
+    console.log(data);
+    setRemove("User removed");
   };
 
   return (
     <div>
       <div className="boxDelete">
-        <form>
+        <form ref={deleteForm} onSubmit={(e) => { e.preventDefault(); removeUser(); }}>
           <label className="boxText">
-            Search for user:
+            User ID:
             <input
               type="number"
               className='searchBox'
-              onChange={(e) => findUser(parseInt(e.target.value))} />
+              id='userID'
+              />
           </label>
+          <input type="submit" value="Submit" />
         </form>
-        <h2 className="boxText">User: {search}</h2>
+        <h2 className="boxText">{remove}</h2>
       </div>
     </div>
   );
