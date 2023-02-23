@@ -1,0 +1,75 @@
+/* base config*/
+body {
+  margin: 0;
+}
+
+/*shelf and header*/
+.header {
+  position: absolute;
+  width: 100%;
+  height: 200px;
+  background-color: aliceblue;
+}
+
+.shelfLiner {
+  position: relative;
+  top: 250px;
+  width: 700px;
+  height: 500px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: aqua;
+}
+
+/*boxes*/
+.boxSearch {
+  position: fixed;
+  top: 150px;
+  left: 50px;
+  width: 500px;
+  height: 200px;
+  background-color: pink;
+}
+
+.boxAdd {
+  position: fixed;
+  top: 150px;
+  right: 50px;
+  width: 500px;
+  height: 200px;
+  background-color: pink;
+}
+
+.boxDelete {
+  position: fixed;
+  top: 450px;
+  left: 500px;
+  width: 500px;
+  height: 200px;
+  background-color: pink;
+}
+
+.topButton {
+  position: fixed;
+  bottom: 20px;
+  right: 50px;
+  height: 50px;
+  width: 50px;
+  font-size: 50px;
+}
+
+/*text*/
+/* .countTitle {
+} */
+
+.boxText {
+  margin-left: 10px;
+}
+
+.boxInput {
+  margin-left: 10px;
+}
+
+.headerText {
+  text-align: center;
+}
