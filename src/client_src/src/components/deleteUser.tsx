@@ -6,7 +6,9 @@ export default function DeleteUser() {
   const deleteForm = useRef(null);
 
   const removeUser = async () => {
+    //set id to be removed
     const id = (deleteForm.current as any).userID.value;
+
     //removes a user from the database
     const response = await fetch("http://localhost:3000/users/" + id, {
       method: "DELETE",

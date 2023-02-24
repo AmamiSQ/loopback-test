@@ -1,4 +1,4 @@
 {
-    "urlDB": "postgres://postgres:ilovemyself4@localhost/loopbackDB",
-    "passwordDB": "ilovemyself4"
+    "urlDB": "postgres://postgres:dbpassword@localhost/loopbackDB",
+    "passwordDB": "dbpassword"
 }
